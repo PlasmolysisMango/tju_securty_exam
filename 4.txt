@@ -1,0 +1,1467 @@
+
+
+
+
+
+ 
+ 
+<script type="text/javascript" src="/js/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery-ui-1.12.1.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/jquery/jqueryUiExp.js" charset="UTF-8"></script><!-- 这个js比较特殊，只能用utf-8,否则中文乱码 -->
+<script type="text/javascript" src="/js/jquery/external/block/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/js/tsinghua.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/js/helpmessage.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/js/sbgz/sbgzmenu.js"></script>
+<link rel="stylesheet" href="/query/style/main.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/jquery.validation.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/index.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/sbgzmenu.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/lcline.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/helpmessage.css" type="text/css"></link>
+<link rel="stylesheet" href="/js/jquery/jquery-ui-1.12.1.custom.css" type="text/css"></link>
+<link rel="stylesheet" href="../css/style.css" type="text/css"></link>
+
+<meta http-equiv="Cache-Control" content="no-cache" />
+
+
+
+
+
+
+<SCRIPT language=JavaScript1.2>
+function disableselect(e){
+return false}
+function reEnable(){return true
+}
+file://if IE4+
+document.onselectstart=new Function ("return false")
+file://if NS6
+if (window.sidebar){
+document.onmousedown=disableselect
+document.onclick=reEnable
+}
+</SCRIPT>
+<SCRIPT language=JavaScript type=text/JavaScript>
+<!--
+function MM_reloadPage(init) {    //reloads the window if Nav4 resized
+    if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+      document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+    else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</SCRIPT>
+
+<noscript><iframe src=""></iframe></noscript>
+
+
+<script language="JavaScript">
+
+if (window.Event) 
+document.captureEvents(Event.MOUSEUP); 
+function nocontextmenu() {
+event.cancelBubble = true
+event.returnValue = false;
+return false;
+}
+function norightclick(e) {
+if (window.Event){
+   if (e.which == 2 || e.which == 3)
+   return false;
+}else{
+   if (event.button == 2 || event.button == 3){
+       event.cancelBubble = true
+    event.returnValue = false;
+       return false;
+    }
+}
+}
+
+document.oncontextmenu = nocontextmenu; // for IE5+
+document.onmousedown = norightclick; // for all others
+//-->
+</script>
+
+<script type="text/javascript">
+	$().ready(function() {
+	});
+	function searchtheme(){
+		var searchword = $('#searchword').val();
+		var knid = $('#knowledgeId').val();
+		var deptid = $('#deptId').val();
+		var themelx = $('#themelx').val();
+		menuClick('/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid='+knid+'&deptId='+deptid+'&searchword='+searchword+'&themelx='+themelx);
+	}
+</script>
+<script language="JavaScript">document.oncontextmenu = function() { return false;}</script> 
+<style>
+#tableDiv .table_data2 tr {
+	text-align: left;
+}
+#tableDiv .table_data2 th {
+	text-align: left;
+}
+#tableDiv .table_data2 td {
+	text-align: left;
+}
+</style>
+<div id="tableDiv">
+<font color="green" size="2">请输入题目关键字</font>
+<input type="hidden" id="knowledgeId" value="-1" />
+<input type="hidden" id="deptId" value="447122" />
+<input type="text" name="searchword" id="searchword" value="" >&nbsp;&nbsp;
+题目类型：
+<select name="themelx" id="themelx">
+	<option value="0" >全部</option>
+	<option value="1" >单选题</option>
+	<option value="2" >多选题</option>
+	<option value="3" >判断</option>
+	<option value="4" >填空题</option>
+	<option value="5" >问答题</option>
+	<option value="6" >综合题</option>
+<!--  
+			<option value="0" selected="selected">全部</option>
+			<option value="1" >单选题</option>
+			<option value="2" >多选题</option>
+			<option value="3" >判断</option>
+		-->
+</select>
+<input type="button" value="查询" onclick="javascript:searchtheme();"  />
+<input type="button" value="返回" onclick="javascript:menuClick('/exam/studenttest/studentTestAction!gotoStudy.do');"  />
+
+<style>
+.ToolBar{
+ width:99%;
+ background:#fff;
+ margin: 5px auto;
+ padding: 0 auto;
+}
+
+</style>
+<script type="text/javascript">
+            function goPageList(pageNum)
+            {
+				var pageMax = document.getElementsByName('pageMax1')[0].value;
+				
+            	if(isNaN(pageNum) || isNaN(pageMax)){
+            		 alert('请输入数字!');
+            		 return;
+            	}
+                if(pageNum>parseInt('5'))
+                {
+                    alert('超过最大页数了');
+                    return;
+                }
+                if(pageNum<=0)
+                {
+                    alert('已经到第一页了');
+                    return;
+                }
+                menuClick("/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid=-1&deptId=447122&searchword=&themelx="+"&pageNum="+pageNum+"&pageMax="+pageMax);
+            }
+            function setPageNum(obj) {
+            	var x = document.getElementsByName("goPageNumber");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+            function setPageMax(obj) {
+            	var x = document.getElementsByName("pageMax1");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+    </script>
+    <div id="pagedDiv" class="ToolBar" >
+    <form id="frmPage" name="frmPage">
+    <table class="paged" style="float:right;">
+    <tr><td style="font-size: 12px;">
+共有<span style='color:red'>5</span>页   <span style='color:red'>100</span>条记录 
+每页显示<input type="text" name="pageMax1" value="20" size="3" onkeyup="setPageMax(this);">条记录&nbsp;
+<c:if test="true">当前第<span style='color:red'>4</span>页</c:if>
+<c:if test="true">
+	<a href="javascript:goPageList(1)">最前页</a>
+	<a href="javascript:goPageList('3')">上一页</a>
+</c:if>
+<!-- <c:forEach begin="1" end="5" var="tt">
+	<c:choose>
+		<c:when test="false">
+			<strong></strong>
+		</c:when>
+		<c:otherwise>
+			<a href="javascript:go('')"></a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach> -->
+<c:if test="true">
+	<a href="javascript:goPageList('5')">下一页</a>
+	<a href="javascript:goPageList(5)">最后页</a>
+</c:if>
+<c:if test="true">
+	<input type="text" name="goPageNumber" value="5" size="3" onkeyup="setPageNum(this);">&nbsp;
+	<input type="button" class="infoDisBottomButton" onclick="goPageList(document.getElementsByName('goPageNumber')[0].value);" value="GO"  style="padding:2px 5px;cursor: pointer;">
+</c:if>
+</td></tr>
+</table>
+</form>
+</div>
+	<table cellspacing="0" cellpadding="0" border="0" style="width: 98%; margin-top: 10px;" class="table_data2">
+		<tr>
+			<th width="10%">题号</th>
+			<th>试题标题</th>
+		</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								31&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300251" target="_blank">关于门禁卡的使用，以下错误的是（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												门禁卡持有者有责任保管好自己的门禁卡；
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													若有遗失应由本人或委托他人立即通过电话或者当面通知实验室教师禁止该丢失卡的使用权限并立即挂失
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													挂失前所造成的一切后果，由丢卡者本人负责
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_0" class="da" href="javascript: getDaan('da_0');">正确答案：</a>
+							<font id="an_0" class="an" color="red" style="display: none;">
+								
+										B
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								32&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300252" target="_blank">关于排风柜及吸附式气体净化装置，以下说法错误的是（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												排风柜用以保护操作人员，以免他们接触到由化学品释放的有毒烟雾，并防止烟雾于实验室内扩散。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													吸附式气体净化装置容易饱和禁止存放化学品，排风柜可少量放置常用的挥发性试剂。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													凡涉及有毒化学品的实验，尽可能在排风柜内进行。谨记戴上防护镜及穿上保护手套，每次使用完毕，必须彻底清理工作台和仪器。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													凡涉及有机溶剂的超声、蒸馏及消解过程的操作程序，必须在排风柜内进行，且使用人必须全程看管。
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_1" class="da" href="javascript: getDaan('da_1');">正确答案：</a>
+							<font id="an_1" class="an" color="red" style="display: none;">
+								
+										B
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								33&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300253" target="_blank">关于实验室气体钢瓶及标签的使用，以下错误的是 （      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												气体钢瓶的使用请遵循钢瓶使用安全守则，钢瓶内气体不得用空；
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													气体订购通过钢瓶标签而定，瓶内气体达到规定下限后停止使用且务必挂上“空”标签；
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													瓶内气体达到规定使用下限后挂上“半空”标签；
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													钢瓶总阀开启时漏气或钢瓶出气管变形导致与减压阀密封不严漏气都应使用“漏”标签。
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_2" class="da" href="javascript: getDaan('da_2');">正确答案：</a>
+							<font id="an_2" class="an" color="red" style="display: none;">
+								
+										C
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								34&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300254" target="_blank">关于仪器预约及使用过程，申请时间的规定以下正确的是（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												周末使用仪器，必须填写《周末仪器使用申请表》，并由导师亲笔签字，仪器负责老师批准，并于周四16:00前报实验室备案；
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													仪器使用均采取预约制，每人每天限约一台仪器，每台仪器限约一次，实验分析当天14:00后方可预约下一次。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													如有特殊原因不能应约实验，须在预约日期前一天12:00之前或更早时间通知老师以作调整，不得擅自调整。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													以上均正确
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_3" class="da" href="javascript: getDaan('da_3');">正确答案：</a>
+							<font id="an_3" class="an" color="red" style="display: none;">
+								
+										D
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								35&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300255" target="_blank">关于重点实验室仪器仪器使用，以下说法错误的是（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												仪器使用时间为工作日工作时
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													如遇特殊情况须在周末使用仪器，必须填写《周末仪器使用申请表》，并由导师亲笔签字，仪器负责老师批准，报实验室备案
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													在非工作时段使用仪器时由于个人原因造成实验室财产损失须照价赔偿，如造成重大事故，按照相关规定追究责任
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													根据实验进度可自行安排使用仪器时间,如遇特殊情况须在双休日使用仪器，只需仪器负责老师批准即可
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_4" class="da" href="javascript: getDaan('da_4');">正确答案：</a>
+							<font id="an_4" class="an" color="red" style="display: none;">
+								
+										D
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								36&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300256" target="_blank">化学品如需长期保存，应放置于（）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												试剂柜
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													通风橱
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													实验台
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													干燥器
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_5" class="da" href="javascript: getDaan('da_5');">正确答案：</a>
+							<font id="an_5" class="an" color="red" style="display: none;">
+								
+										A
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								37&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300257" target="_blank">化学药品库中的一般药品应如何分类</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												按生产日期分类
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													按有机、无机两大类，有机试剂再细分类存放
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													随意摆放
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_6" class="da" href="javascript: getDaan('da_6');">正确答案：</a>
+							<font id="an_6" class="an" color="red" style="display: none;">
+								
+										B
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								38&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300258" target="_blank">检查气体钢瓶是否漏气时，常采用：</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												听漏气的声音查找
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													用手感觉
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													涂肥皂水寻找漏气点
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													用打火机寻找漏气点
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_7" class="da" href="javascript: getDaan('da_7');">正确答案：</a>
+							<font id="an_7" class="an" color="red" style="display: none;">
+								
+										C
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								39&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300259" target="_blank">开启气瓶瓶阀时，操作者应该站在气阀什么位置？ （      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												侧面
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													正面
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													后面
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_8" class="da" href="javascript: getDaan('da_8');">正确答案：</a>
+							<font id="an_8" class="an" color="red" style="display: none;">
+								
+										A
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								40&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300260" target="_blank">每学期仪器申请根据校历安排截止至第（      ）周</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												15
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													16
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													17
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													18
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_9" class="da" href="javascript: getDaan('da_9');">正确答案：</a>
+							<font id="an_9" class="an" color="red" style="display: none;">
+								
+										C
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								41&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300261" target="_blank">配制稀硫酸时，应如何操作？（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												将水慢慢分批倒入酸中，并不时搅拌
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													将浓硫酸慢慢分批加入水中，并不时搅拌
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													将水和浓硫酸同时倒入容器中，并不时搅拌
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													将浓硫酸快速加入水中，并迅速搅拌
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_10" class="da" href="javascript: getDaan('da_10');">正确答案：</a>
+							<font id="an_10" class="an" color="red" style="display: none;">
+								
+										B
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								42&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300262" target="_blank">气瓶使用时瓶内气体不能用尽，氢气钢瓶的剩余压力应不小于（      ）MPa。</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												0
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													0
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													0
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													0
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_11" class="da" href="javascript: getDaan('da_11');">正确答案：</a>
+							<font id="an_11" class="an" color="red" style="display: none;">
+								
+										D
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								43&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300263" target="_blank">气体钢瓶减压阀至少</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												6个月检测一次
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													3个月检测一次
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													1年检测一次
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													3年检测一次
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_12" class="da" href="javascript: getDaan('da_12');">正确答案：</a>
+							<font id="an_12" class="an" color="red" style="display: none;">
+								
+										A
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								44&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300264" target="_blank">如果实验出现火情，首先应： （      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												停止加热，移开可燃物，切断电源，用灭火器灭火
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													携带相关物品，尽快疏散、撤离人员
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													用干毛巾覆盖上火源，使火焰熄灭
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_13" class="da" href="javascript: getDaan('da_13');">正确答案：</a>
+							<font id="an_13" class="an" color="red" style="display: none;">
+								
+										A
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								45&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300265" target="_blank">如果有化学品进入眼睛,应立即（       ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												滴氯霉素眼药水
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													用大量清水冲洗眼睛
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													用干净手帕擦拭
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_14" class="da" href="javascript: getDaan('da_14');">正确答案：</a>
+							<font id="an_14" class="an" color="red" style="display: none;">
+								
+										B
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								46&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300266" target="_blank">身上着火后,下列哪种灭火方法是错误的？（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												使用灭火器灭火
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													用厚重衣物覆盖压灭火苗
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													迎风快跑
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_15" class="da" href="javascript: getDaan('da_15');">正确答案：</a>
+							<font id="an_15" class="an" color="red" style="display: none;">
+								
+										C
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								47&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300267" target="_blank">师生进入实验室工作，一定要搞清楚（）等的位置，有异常情况，要关闭相应的总开关</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												日光灯开关、水槽、通风橱
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													通风设备开关、多媒体开关、计算机开关
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													电源总开关、水源总开关
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_16" class="da" href="javascript: getDaan('da_16');">正确答案：</a>
+							<font id="an_16" class="an" color="red" style="display: none;">
+								
+										C
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								48&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300268" target="_blank">实验大楼因出现火情发生浓烟已进入实验室内时，以下哪种行为是正确的？（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												保持身体低位前进
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													打开实验室门后不用随手关门
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													乘电梯逃离现场
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													携带贵重物品撤离火场
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_17" class="da" href="javascript: getDaan('da_17');">正确答案：</a>
+							<font id="an_17" class="an" color="red" style="display: none;">
+								
+										A
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								49&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300269" target="_blank">实验室冰箱和超低温冰箱使用正确的是：</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												定期除霜、清理，清理后要对表面进行消毒。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													存储的所有容器，应标明物品名称、存储日期和存储者姓名。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													除非有防爆措施，否则不能放易燃易爆化学品，冰箱门上应警示。
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													以上都是
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_18" class="da" href="javascript: getDaan('da_18');">正确答案：</a>
+							<font id="an_18" class="an" color="red" style="display: none;">
+								
+										D
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								50&nbsp;&nbsp;
+								单选题 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300270" target="_blank">实验室内使用可燃气体时，正确的是（      ）</a></td>
+						</tr>
+						
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">A&nbsp;
+												用氧气瓶、空气瓶充装可燃气体
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">B&nbsp;
+													用可燃气体气瓶充装氧气、空气
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">C&nbsp;
+													用低压气瓶充装高压气体
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">D&nbsp;
+													气瓶存在严重缺陷
+											</td>
+										</tr>
+									
+									
+										<tr style="border: 0;">
+											<td style="border: 0;">&nbsp;</td>
+											<td style="border: 0;" colspan="2">E&nbsp;
+													以上都不正确
+											</td>
+										</tr>
+									
+									
+									
+									
+									
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_19" class="da" href="javascript: getDaan('da_19');">正确答案：</a>
+							<font id="an_19" class="an" color="red" style="display: none;">
+								
+										E
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+		<tr><td colspan="2">该知识点暂无试题信息。</td></tr>
+	</table>
+	<form id="pageform" action="/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid=-1&deptId=447122&searchword=&themelx=" method="post">
+	<input type="hidden" name="ms" value="xtglyListDeptThemeBank" />
+	<input type="hidden" name="fk_level" value="" />
+	<input type="hidden" name="fk_knowledge" value="" />
+	<input type="hidden" name="fk_themeType" value="" />
+	<input type="hidden" name="value" value="" />
+	<input type="hidden" name="deptId" value="447122" />
+</form>
+
+<style>
+.ToolBar{
+ width:99%;
+ background:#fff;
+ margin: 5px auto;
+ padding: 0 auto;
+}
+
+</style>
+<script type="text/javascript">
+            function goPageList(pageNum)
+            {
+				var pageMax = document.getElementsByName('pageMax1')[0].value;
+				
+            	if(isNaN(pageNum) || isNaN(pageMax)){
+            		 alert('请输入数字!');
+            		 return;
+            	}
+                if(pageNum>parseInt('5'))
+                {
+                    alert('超过最大页数了');
+                    return;
+                }
+                if(pageNum<=0)
+                {
+                    alert('已经到第一页了');
+                    return;
+                }
+                menuClick("/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid=-1&deptId=447122&searchword=&themelx="+"&pageNum="+pageNum+"&pageMax="+pageMax);
+            }
+            function setPageNum(obj) {
+            	var x = document.getElementsByName("goPageNumber");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+            function setPageMax(obj) {
+            	var x = document.getElementsByName("pageMax1");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+    </script>
+    <div id="pagedDiv" class="ToolBar" >
+    <form id="frmPage" name="frmPage">
+    <table class="paged" style="float:right;">
+    <tr><td style="font-size: 12px;">
+共有<span style='color:red'>5</span>页   <span style='color:red'>100</span>条记录 
+每页显示<input type="text" name="pageMax1" value="20" size="3" onkeyup="setPageMax(this);">条记录&nbsp;
+<c:if test="true">当前第<span style='color:red'>4</span>页</c:if>
+<c:if test="true">
+	<a href="javascript:goPageList(1)">最前页</a>
+	<a href="javascript:goPageList('3')">上一页</a>
+</c:if>
+<!-- <c:forEach begin="1" end="5" var="tt">
+	<c:choose>
+		<c:when test="false">
+			<strong></strong>
+		</c:when>
+		<c:otherwise>
+			<a href="javascript:go('')"></a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach> -->
+<c:if test="true">
+	<a href="javascript:goPageList('5')">下一页</a>
+	<a href="javascript:goPageList(5)">最后页</a>
+</c:if>
+<c:if test="true">
+	<input type="text" name="goPageNumber" value="5" size="3" onkeyup="setPageNum(this);">&nbsp;
+	<input type="button" class="infoDisBottomButton" onclick="goPageList(document.getElementsByName('goPageNumber')[0].value);" value="GO"  style="padding:2px 5px;cursor: pointer;">
+</c:if>
+</td></tr>
+</table>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+function getDaan(daid) {
+	$(".an").css("display", "none");
+	var suffix = daid.split("_")[1];
+	$("#an_" + suffix).css("display", "inline");
+}
+</script>

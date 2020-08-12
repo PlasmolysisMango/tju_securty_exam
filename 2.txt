@@ -1,0 +1,789 @@
+
+
+
+
+
+ 
+ 
+<script type="text/javascript" src="/js/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery-ui-1.12.1.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/jquery/jqueryUiExp.js" charset="UTF-8"></script><!-- 这个js比较特殊，只能用utf-8,否则中文乱码 -->
+<script type="text/javascript" src="/js/jquery/external/block/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/js/tsinghua.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/js/helpmessage.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/js/sbgz/sbgzmenu.js"></script>
+<link rel="stylesheet" href="/query/style/main.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/jquery.validation.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/index.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/sbgzmenu.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/lcline.css" type="text/css"></link>
+<link rel="stylesheet" href="/css/helpmessage.css" type="text/css"></link>
+<link rel="stylesheet" href="/js/jquery/jquery-ui-1.12.1.custom.css" type="text/css"></link>
+<link rel="stylesheet" href="../css/style.css" type="text/css"></link>
+
+<meta http-equiv="Cache-Control" content="no-cache" />
+
+
+
+
+
+
+<SCRIPT language=JavaScript1.2>
+function disableselect(e){
+return false}
+function reEnable(){return true
+}
+file://if IE4+
+document.onselectstart=new Function ("return false")
+file://if NS6
+if (window.sidebar){
+document.onmousedown=disableselect
+document.onclick=reEnable
+}
+</SCRIPT>
+<SCRIPT language=JavaScript type=text/JavaScript>
+<!--
+function MM_reloadPage(init) {    //reloads the window if Nav4 resized
+    if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+      document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+    else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</SCRIPT>
+
+<noscript><iframe src=""></iframe></noscript>
+
+
+<script language="JavaScript">
+
+if (window.Event) 
+document.captureEvents(Event.MOUSEUP); 
+function nocontextmenu() {
+event.cancelBubble = true
+event.returnValue = false;
+return false;
+}
+function norightclick(e) {
+if (window.Event){
+   if (e.which == 2 || e.which == 3)
+   return false;
+}else{
+   if (event.button == 2 || event.button == 3){
+       event.cancelBubble = true
+    event.returnValue = false;
+       return false;
+    }
+}
+}
+
+document.oncontextmenu = nocontextmenu; // for IE5+
+document.onmousedown = norightclick; // for all others
+//-->
+</script>
+
+<script type="text/javascript">
+	$().ready(function() {
+	});
+	function searchtheme(){
+		var searchword = $('#searchword').val();
+		var knid = $('#knowledgeId').val();
+		var deptid = $('#deptId').val();
+		var themelx = $('#themelx').val();
+		menuClick('/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid='+knid+'&deptId='+deptid+'&searchword='+searchword+'&themelx='+themelx);
+	}
+</script>
+<script language="JavaScript">document.oncontextmenu = function() { return false;}</script> 
+<style>
+#tableDiv .table_data2 tr {
+	text-align: left;
+}
+#tableDiv .table_data2 th {
+	text-align: left;
+}
+#tableDiv .table_data2 td {
+	text-align: left;
+}
+</style>
+<div id="tableDiv">
+<font color="green" size="2">请输入题目关键字</font>
+<input type="hidden" id="knowledgeId" value="-1" />
+<input type="hidden" id="deptId" value="447122" />
+<input type="text" name="searchword" id="searchword" value="" >&nbsp;&nbsp;
+题目类型：
+<select name="themelx" id="themelx">
+	<option value="0" >全部</option>
+	<option value="1" >单选题</option>
+	<option value="2" >多选题</option>
+	<option value="3" >判断</option>
+	<option value="4" >填空题</option>
+	<option value="5" >问答题</option>
+	<option value="6" >综合题</option>
+<!--  
+			<option value="0" selected="selected">全部</option>
+			<option value="1" >单选题</option>
+			<option value="2" >多选题</option>
+			<option value="3" >判断</option>
+		-->
+</select>
+<input type="button" value="查询" onclick="javascript:searchtheme();"  />
+<input type="button" value="返回" onclick="javascript:menuClick('/exam/studenttest/studentTestAction!gotoStudy.do');"  />
+
+<style>
+.ToolBar{
+ width:99%;
+ background:#fff;
+ margin: 5px auto;
+ padding: 0 auto;
+}
+
+</style>
+<script type="text/javascript">
+            function goPageList(pageNum)
+            {
+				var pageMax = document.getElementsByName('pageMax1')[0].value;
+				
+            	if(isNaN(pageNum) || isNaN(pageMax)){
+            		 alert('请输入数字!');
+            		 return;
+            	}
+                if(pageNum>parseInt('5'))
+                {
+                    alert('超过最大页数了');
+                    return;
+                }
+                if(pageNum<=0)
+                {
+                    alert('已经到第一页了');
+                    return;
+                }
+                menuClick("/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid=-1&deptId=447122&searchword=&themelx="+"&pageNum="+pageNum+"&pageMax="+pageMax);
+            }
+            function setPageNum(obj) {
+            	var x = document.getElementsByName("goPageNumber");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+            function setPageMax(obj) {
+            	var x = document.getElementsByName("pageMax1");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+    </script>
+    <div id="pagedDiv" class="ToolBar" >
+    <form id="frmPage" name="frmPage">
+    <table class="paged" style="float:right;">
+    <tr><td style="font-size: 12px;">
+共有<span style='color:red'>5</span>页   <span style='color:red'>100</span>条记录 
+每页显示<input type="text" name="pageMax1" value="20" size="3" onkeyup="setPageMax(this);">条记录&nbsp;
+<c:if test="true">当前第<span style='color:red'>2</span>页</c:if>
+<c:if test="true">
+	<a href="javascript:goPageList(1)">最前页</a>
+	<a href="javascript:goPageList('1')">上一页</a>
+</c:if>
+<!-- <c:forEach begin="1" end="5" var="tt">
+	<c:choose>
+		<c:when test="false">
+			<strong></strong>
+		</c:when>
+		<c:otherwise>
+			<a href="javascript:go('')"></a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach> -->
+<c:if test="true">
+	<a href="javascript:goPageList('3')">下一页</a>
+	<a href="javascript:goPageList(5)">最后页</a>
+</c:if>
+<c:if test="true">
+	<input type="text" name="goPageNumber" value="3" size="3" onkeyup="setPageNum(this);">&nbsp;
+	<input type="button" class="infoDisBottomButton" onclick="goPageList(document.getElementsByName('goPageNumber')[0].value);" value="GO"  style="padding:2px 5px;cursor: pointer;">
+</c:if>
+</td></tr>
+</table>
+</form>
+</div>
+	<table cellspacing="0" cellpadding="0" border="0" style="width: 98%; margin-top: 10px;" class="table_data2">
+		<tr>
+			<th width="10%">题号</th>
+			<th>试题标题</th>
+		</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								11&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300377" target="_blank">对于含汞、砷、铋、碲等离子的废液，实验室可以先进行如下处理，控制酸度0.3mol/L[H离子]，使其生成硫化物沉淀。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_0" class="da" href="javascript: getDaan('da_0');">正确答案：</a>
+							<font id="an_0" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								12&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300378" target="_blank">对于实验室中使用的常用溶剂，如丙酮，酒精，乙酸乙酯等，可以长期大量存放，但必须严禁明火。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_1" class="da" href="javascript: getDaan('da_1');">正确答案：</a>
+							<font id="an_1" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								13&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300379" target="_blank">铬化合物中Cr＋6毒性最大，有强刺激性，引起蛋白变性，干扰酶系统。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_2" class="da" href="javascript: getDaan('da_2');">正确答案：</a>
+							<font id="an_2" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								14&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300380" target="_blank">化学爆炸品的主要特点是:反应速度极快，放出大量的热，产生大量的气体，只有上述三者都同时具备的化学反应才能发生爆炸。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_3" class="da" href="javascript: getDaan('da_3');">正确答案：</a>
+							<font id="an_3" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								15&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300382" target="_blank">剧毒物品要按照“五双制”规定严格管理。“五双制”是指：双人保管、双锁、双账、双人领取、双人使用。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_4" class="da" href="javascript: getDaan('da_4');">正确答案：</a>
+							<font id="an_4" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								16&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300383" target="_blank">离心机使用时，针对离心液体的性质选择适宜的离心管。为避免玻璃套管的破裂，有机溶剂和酶溶液选择塑料套管，盐溶液选择金属套管。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_5" class="da" href="javascript: getDaan('da_5');">正确答案：</a>
+							<font id="an_5" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								17&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300384" target="_blank">气瓶在使用前，应该放在绝缘性物体如橡胶、塑料、木板上。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_6" class="da" href="javascript: getDaan('da_6');">正确答案：</a>
+							<font id="an_6" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								18&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300385" target="_blank">氢气减压阀螺旋口为左旋。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_7" class="da" href="javascript: getDaan('da_7');">正确答案：</a>
+							<font id="an_7" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								19&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300386" target="_blank">使用压力为0.5 MPa的压力容器为高压容器。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_8" class="da" href="javascript: getDaan('da_8');">正确答案：</a>
+							<font id="an_8" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								20&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300387" target="_blank">水银温度计破了以后正确的处理是：洒落出来的汞必须立即用滴管、毛刷收集起来，并用水覆盖（最好用甘油），然后在污染处撒上硫磺粉，无液体后（一般约一周时间）方可清扫。?</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_9" class="da" href="javascript: getDaan('da_9');">正确答案：</a>
+							<font id="an_9" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								21&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300388" target="_blank">遇水能分解或燃烧、爆炸的药品，如钾、钠、三氯化磷、五氯化磷、浓硫酸等，使用时不准与水接触,不准放置于潮湿的地方储存。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_10" class="da" href="javascript: getDaan('da_10');">正确答案：</a>
+							<font id="an_10" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								22&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300389" target="_blank">在实验中使用到水浴锅长时间加热时，要不定时查看水位，并及时加水，防止干烧损坏仪器发生危险。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_11" class="da" href="javascript: getDaan('da_11');">正确答案：</a>
+							<font id="an_11" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								23&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300390" target="_blank">在使用一些固体化学试剂如：硝化纤维、苦味酸、三硝基甲苯、三硝基苯等，可以直接加热，但不能撞击，并注意周围不要有明火。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_12" class="da" href="javascript: getDaan('da_12');">正确答案：</a>
+							<font id="an_12" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								24&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300391" target="_blank">正在进行实验时，可带着防护手套接听电话。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_13" class="da" href="javascript: getDaan('da_13');">正确答案：</a>
+							<font id="an_13" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								25&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300392" target="_blank">对于多取用的、未使用的试剂可以倒回到原瓶中，下次再使用。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_14" class="da" href="javascript: getDaan('da_14');">正确答案：</a>
+							<font id="an_14" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								26&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300393" target="_blank">为防止气体倒灌，气体钢瓶不应全部用完。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_15" class="da" href="javascript: getDaan('da_15');">正确答案：</a>
+							<font id="an_15" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								27&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300089" target="_blank">安全事故处理应本着先人后物的原则，果断地、坚决地快速处置。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_16" class="da" href="javascript: getDaan('da_16');">正确答案：</a>
+							<font id="an_16" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								28&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300090" target="_blank">按国家有关规定处理有毒、带菌的废气、废水和废物，集中统一处理，谨防污染环境。腐蚀性废水可采用大体积稀释的方法处理后排放。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_17" class="da" href="javascript: getDaan('da_17');">正确答案：</a>
+							<font id="an_17" class="an" color="red" style="display: none;">
+								
+										
+										错
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								29&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300091" target="_blank">初次进入实验室的操作人员应了解实验室具体的潜在危险，认真阅读、理解安全手册和操作手册。实验进行前要了解实验仪器的使用说明及注意事项，实验过程中要严格按照操作规程进行操作。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_18" class="da" href="javascript: getDaan('da_18');">正确答案：</a>
+							<font id="an_18" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+			
+						<tr style="border: 0;">
+							<td style="border: 0;">
+								30&nbsp;&nbsp;
+								判断题	 
+							</td>
+							<td style="border: 0;"><a title="查看详细" href="/exam/studenttest/studentTestAction!gotoSearchThemeOneDetail.do?themeid=3300092" target="_blank">纯水机插入水桶中的一端不允许露出水面。</a></td>
+						</tr>
+						
+									
+								
+					
+					<tr>
+						<td colspan="3"><a id="da_19" class="da" href="javascript: getDaan('da_19');">正确答案：</a>
+							<font id="an_19" class="an" color="red" style="display: none;">
+								
+										对
+										
+									 
+							
+							</font>
+						</td>
+					</tr>
+		
+		<tr><td colspan="2">该知识点暂无试题信息。</td></tr>
+	</table>
+	<form id="pageform" action="/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid=-1&deptId=447122&searchword=&themelx=" method="post">
+	<input type="hidden" name="ms" value="xtglyListDeptThemeBank" />
+	<input type="hidden" name="fk_level" value="" />
+	<input type="hidden" name="fk_knowledge" value="" />
+	<input type="hidden" name="fk_themeType" value="" />
+	<input type="hidden" name="value" value="" />
+	<input type="hidden" name="deptId" value="447122" />
+</form>
+
+<style>
+.ToolBar{
+ width:99%;
+ background:#fff;
+ margin: 5px auto;
+ padding: 0 auto;
+}
+
+</style>
+<script type="text/javascript">
+            function goPageList(pageNum)
+            {
+				var pageMax = document.getElementsByName('pageMax1')[0].value;
+				
+            	if(isNaN(pageNum) || isNaN(pageMax)){
+            		 alert('请输入数字!');
+            		 return;
+            	}
+                if(pageNum>parseInt('5'))
+                {
+                    alert('超过最大页数了');
+                    return;
+                }
+                if(pageNum<=0)
+                {
+                    alert('已经到第一页了');
+                    return;
+                }
+                menuClick("/exam/studenttest/studentTestAction!gotoSearchTheme.do?knowid=-1&deptId=447122&searchword=&themelx="+"&pageNum="+pageNum+"&pageMax="+pageMax);
+            }
+            function setPageNum(obj) {
+            	var x = document.getElementsByName("goPageNumber");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+            function setPageMax(obj) {
+            	var x = document.getElementsByName("pageMax1");
+            	for (var i = 0; i < x.length; i++) {
+            		x[i].value=obj.value;
+            	}
+            }
+    </script>
+    <div id="pagedDiv" class="ToolBar" >
+    <form id="frmPage" name="frmPage">
+    <table class="paged" style="float:right;">
+    <tr><td style="font-size: 12px;">
+共有<span style='color:red'>5</span>页   <span style='color:red'>100</span>条记录 
+每页显示<input type="text" name="pageMax1" value="20" size="3" onkeyup="setPageMax(this);">条记录&nbsp;
+<c:if test="true">当前第<span style='color:red'>2</span>页</c:if>
+<c:if test="true">
+	<a href="javascript:goPageList(1)">最前页</a>
+	<a href="javascript:goPageList('1')">上一页</a>
+</c:if>
+<!-- <c:forEach begin="1" end="5" var="tt">
+	<c:choose>
+		<c:when test="false">
+			<strong></strong>
+		</c:when>
+		<c:otherwise>
+			<a href="javascript:go('')"></a>
+		</c:otherwise>
+	</c:choose>
+</c:forEach> -->
+<c:if test="true">
+	<a href="javascript:goPageList('3')">下一页</a>
+	<a href="javascript:goPageList(5)">最后页</a>
+</c:if>
+<c:if test="true">
+	<input type="text" name="goPageNumber" value="3" size="3" onkeyup="setPageNum(this);">&nbsp;
+	<input type="button" class="infoDisBottomButton" onclick="goPageList(document.getElementsByName('goPageNumber')[0].value);" value="GO"  style="padding:2px 5px;cursor: pointer;">
+</c:if>
+</td></tr>
+</table>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+function getDaan(daid) {
+	$(".an").css("display", "none");
+	var suffix = daid.split("_")[1];
+	$("#an_" + suffix).css("display", "inline");
+}
+</script>
